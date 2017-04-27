@@ -3410,9 +3410,10 @@ router
         // console.log(req.body);
         // console.log(moment().toDate().getTime());
         var items = req.body;
-        // console.log('THIS IS ITEMS');
-        // console.log(items);
+        console.log('THIS IS ITEMS');
+         console.log(items);
         var main_id = mongojs.ObjectId();
+        
         db.user_infos.findAndModify(
 
             {
@@ -3443,9 +3444,9 @@ router
 
                 } else {
 
-                    for (var i = 0; i < items[0].length; i++) {
+                    for (var i = 0; i < items.length; i++) {
 
-                        console.log('THIS IS SUBORDER ONE');
+                      
                         db.user_infos.findAndModify(
 
                             {
@@ -3458,7 +3459,7 @@ router
                                         'sub_order_status': {
 
                                             'main_order_id': main_id,
-                                            'sub_order_id': '123456',
+                                            'sub_order_id':  items[i].order_id,
                                             'sub_order_status': 'pending',
                                             'time': moment().toDate().getTime(),
 
